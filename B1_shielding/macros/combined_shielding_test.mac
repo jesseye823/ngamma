@@ -1,0 +1,23 @@
+# 75mm厚度玻璃综合性能测试宏文件
+
+# 设置241Am γ射线源
+/gps/particle gamma
+/gps/pos/type Point
+/gps/pos/centre 0. 0. -30. cm
+/gps/ene/mono 0.0595 MeV  # 241Am主要γ射线能量
+/gps/direction 0. 0. 1.
+
+# 设置输出
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+# 运行γ射线屏蔽测试
+/run/beamOn 5000
+
+# 切换到252Cf中子源
+/gps/particle neutron
+/gps/ene/mono 2.0 MeV  # 252Cf平均中子能量
+
+# 运行中子屏蔽测试
+/run/beamOn 5000

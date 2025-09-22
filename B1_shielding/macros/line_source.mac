@@ -1,0 +1,13 @@
+# 线源 (Line Source) - 沿Z轴分布的线源
+/run/initialize
+/gps/particle gamma
+/gps/energy 0.0595 MeV
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+/gps/pos/radius 0.1 cm
+/gps/pos/halfz 5.0 cm
+/gps/pos/centre 0 0 -30 cm
+/gps/ang/type iso
+/gps/ang/mintheta 0 deg
+/gps/ang/maxtheta 30 deg
+/run/beamOn 10000

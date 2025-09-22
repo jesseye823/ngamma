@@ -1,0 +1,3 @@
+/home/jesse/ngamma/B1_shielding/build/CMakeFiles/exampleB1.dir
+/home/jesse/ngamma/B1_shielding/build/CMakeFiles/edit_cache.dir
+/home/jesse/ngamma/B1_shielding/build/CMakeFiles/rebuild_cache.dir

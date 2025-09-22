@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "energy_comparison_analysis.C": "cpp",
+        "plot_electronic_nuclear_depth.C": "cpp"
+    }
+}

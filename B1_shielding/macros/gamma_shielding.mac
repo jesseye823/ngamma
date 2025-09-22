@@ -1,0 +1,21 @@
+# γ射线屏蔽测试文件
+/run/initialize
+
+# 设置粒子源 - γ射线
+/gps/particle gamma
+/gps/pos/type Surface
+/gps/pos/shape Circle
+/gps/pos/radius 2.0 cm
+/gps/pos/centre 0 0 -30 cm
+/gps/ang/type iso
+/gps/ang/mintheta 0 deg
+/gps/ang/maxtheta 30 deg
+/gps/ene/mono 0.0595 MeV
+
+# 设置输出
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+# 运行γ射线屏蔽仿真
+/run/beamOn 1000

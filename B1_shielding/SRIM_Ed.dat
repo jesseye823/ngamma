@@ -1,0 +1,87 @@
+# SRIM Displacement Energy (Ed) Values
+# Format: ElementName Ed_eV
+# Based on SRIM default values and literature references
+# Source: SRIM software defaults and NRT model recommendations
+
+# Common elements in scintillator glass
+Si 15
+O  20
+B  15
+Li 10
+Na 18
+K  22
+Ba 30
+Pb 35
+
+# Additional elements in detector construction
+Mg 25
+Al 25
+Ce 35
+Gd 35
+
+# Other common elements (for completeness)
+C  25
+N  20
+F  15
+P  25
+S  25
+Cl 20
+Ca 25
+Ti 30
+V  30
+Cr 30
+Mn 30
+Fe 30
+Co 30
+Ni 30
+Cu 30
+Zn 30
+Ga 25
+Ge 25
+As 25
+Se 25
+Br 20
+Rb 20
+Sr 30
+Y  35
+Zr 35
+Nb 35
+Mo 35
+Tc 35
+Ru 35
+Rh 35
+Pd 35
+Ag 35
+Cd 35
+In 25
+Sn 30
+Sb 25
+Te 25
+I  20
+Cs 20
+La 35
+Pr 35
+Nd 35
+Pm 35
+Sm 35
+Eu 35
+Tb 35
+Dy 35
+Ho 35
+Er 35
+Tm 35
+Yb 35
+Lu 35
+Hf 35
+Ta 35
+W  35
+Re 35
+Os 35
+Ir 35
+Pt 35
+Au 35
+Hg 35
+Tl 25
+Bi 35
+Th 40
+U  40

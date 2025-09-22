@@ -1,0 +1,20 @@
+# 241Am γ射线屏蔽测试宏文件 - 面放射源版本
+
+# 设置241Am γ射线面放射源
+/gps/particle gamma
+/gps/pos/type Surface
+/gps/pos/shape Circle
+/gps/pos/radius 2.0 cm
+/gps/pos/centre 0. 0. -30. cm #应该近一点，这个打不到，但是暂且这么设置
+/gps/ene/mono 0.0595 MeV  # 241Am主要γ射线能量
+/gps/ang/type iso
+/gps/ang/mintheta 0. deg
+/gps/ang/maxtheta 30. deg
+
+# 设置输出
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+# 运行241Am γ射线屏蔽测试
+/run/beamOn 10000

@@ -1,0 +1,20 @@
+# 252Cf中子屏蔽测试宏文件 - 均匀覆盖玻璃版本
+
+# 源设置默认由代码内部控制（Cf-252 Watt谱 + 面源 + 半空间各向同性）
+# 如需切换为GPS，请取消注释下一行：
+# /source/mode gps
+
+# 能量由代码内部Watt谱抽样
+
+# 角度由代码内部设为+Z半空间各向同性
+
+# 设置输出
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+# 初始化
+/run/initialize
+
+# 运行252Cf中子屏蔽测试
+/run/beamOn 1000000

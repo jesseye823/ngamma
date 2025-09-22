@@ -1,0 +1,14 @@
+# 平行束源 (Parallel Beam Source) - 平行射线束
+/run/initialize
+/gps/particle gamma
+/gps/energy 0.0595 MeV
+/gps/pos/type Plane
+/gps/pos/shape Rectangle
+/gps/pos/halfx 2.0 cm
+/gps/pos/halfy 2.0 cm
+/gps/pos/centre 0 0 -30 cm
+/gps/ang/type beam1d
+/gps/ang/sigma_r 0.0 deg
+/gps/ang/rot1 0 1 0
+/gps/ang/rot2 1 0 0
+/run/beamOn 10000
