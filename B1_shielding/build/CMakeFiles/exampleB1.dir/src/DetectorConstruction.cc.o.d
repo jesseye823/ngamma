@@ -243,6 +243,17 @@ CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o: \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \
  /usr/include/c++/14/bits/vector.tcc \
+ /home/jesse/ngamma/B1_shielding/include/DetectorMessenger.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4UImessenger.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4UIdirectory.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4UIcommand.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4ApplicationState.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4ThreeVector.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
+ /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Utility/defs.h \
+ /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
+ /home/jesse/geant4/geant4-install/include/Geant4/G4UIparameter.hh \
+ /home/jesse/geant4/geant4-install/include/Geant4/globals.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4RunManager.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4Event.hh \
  /usr/include/c++/14/set /usr/include/c++/14/bits/stl_set.h \
@@ -252,10 +263,6 @@ CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o: \
  /home/jesse/geant4/geant4-install/include/Geant4/G4AllocatorPool.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4PrimaryVertex.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4PrimaryParticle.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/G4ThreeVector.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
- /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Utility/defs.h \
- /home/jesse/geant4/geant4-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
  /home/jesse/geant4/geant4-install/include/Geant4/pwdefs.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4HCofThisEvent.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4VHitsCollection.hh \
@@ -491,10 +498,6 @@ CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o: \
  /home/jesse/geant4/geant4-install/include/Geant4/trkgdefs.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4TrackingMessenger.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4UImessenger.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/G4UIdirectory.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/G4UIcommand.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/G4ApplicationState.hh \
- /home/jesse/geant4/geant4-install/include/Geant4/G4UIparameter.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4UserTrackingAction.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/G4RunManagerKernel.hh \
  /home/jesse/geant4/geant4-install/include/Geant4/rundefs.hh \

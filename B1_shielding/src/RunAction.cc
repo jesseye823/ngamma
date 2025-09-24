@@ -45,6 +45,7 @@
 #include <filesystem>
 #include <ctime>
 #include <sstream>
+#include <fstream>
 
 namespace B1
 {
@@ -129,6 +130,51 @@ void RunAction::BeginOfRunAction(const G4Run* run)
       G4cerr << "WARNING: Failed to create output directory: " << outDir.string() << G4endl;
     }
     std::filesystem::path outFile = outDir / "scintillator_output.root";
+    // 输出材料组成到同目录txt
+    try {
+      const DetectorConstruction* detConstruction
+        = static_cast<const DetectorConstruction*>(
+            G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+      if (detConstruction && detConstruction->GetScoringVolume()) {
+        const G4Material* mat = detConstruction->GetScoringVolume()->GetMaterial();
+        std::filesystem::path compFile = outDir / "composition.txt";
+        std::ofstream ofs(compFile.string());
+        if (ofs.good() && mat) {
+          ofs << "Material: " << mat->GetName() << "\n";
+          ofs << "Density: " << mat->GetDensity()/(g/cm3) << " g/cm3\n";
+          
+          // 记录元素组成
+          ofs << "Elemental Composition (mass fraction):\n";
+          const G4ElementVector* elems = mat->GetElementVector();
+          const G4double* fracs = mat->GetFractionVector();
+          G4int n = mat->GetNumberOfElements();
+          for (G4int i = 0; i < n; ++i) {
+            const G4Element* el = (*elems)[i];
+            ofs << "  - " << el->GetName() << " (Z=" << el->GetZ() << ") : "
+                << std::fixed << std::setprecision(6) << fracs[i]*100.0 << " %\n";
+          }
+          
+          // 如果有配方文件，也记录原始配方
+          if (!detConstruction->GetGlassCompositionFile().empty()) {
+            ofs << "\nOriginal Recipe File: " << detConstruction->GetGlassCompositionFile() << "\n";
+            std::ifstream recipeFile(detConstruction->GetGlassCompositionFile());
+            if (recipeFile.good()) {
+              ofs << "Recipe Contents (Oxide Composition):\n";
+              std::string line;
+              while (std::getline(recipeFile, line)) {
+                if (!line.empty() && line[0] != '#') {
+                  ofs << "  " << line << "\n";
+                }
+              }
+            }
+          }
+          
+          ofs.close();
+        }
+      }
+    } catch (...) {
+      G4cerr << "WARNING: Failed to write composition.txt" << G4endl;
+    }
     G4String fileName = outFile.string();
     G4cout << "Creating ROOT file: " << fileName << G4endl;
     

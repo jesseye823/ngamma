@@ -1,0 +1,8 @@
+# 测试宏文件 - 使用自定义氧化物配方
+/det/glass/compositionFile /home/jesse/ngamma/B1_shielding/macros/recipes/test_oxide.txt
+/run/initialize
+/gps/particle neutron
+/gps/energy 2.0 MeV
+/gps/position 0 0 -10 cm
+/gps/direction 0 0 1
+/run/beamOn 1000

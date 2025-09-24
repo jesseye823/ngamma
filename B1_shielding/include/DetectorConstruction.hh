@@ -44,16 +44,22 @@ namespace B1
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
-    DetectorConstruction() = default;
-    ~DetectorConstruction() override = default;
+    DetectorConstruction();
+    ~DetectorConstruction() override;
 
     G4VPhysicalVolume* Construct() override;
     G4Material* DefineShieldingGlass();
+
+    // 设置玻璃配方文件路径（由UI命令触发）
+    void SetGlassCompositionFile(const G4String& path) { fGlassCompositionFile = path; }
+    G4String GetGlassCompositionFile() const { return fGlassCompositionFile; }
 
     G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
   protected:
     G4LogicalVolume* fScoringVolume = nullptr;
+    G4String fGlassCompositionFile;
+    class DetectorMessenger* fMessenger = nullptr;
 };
 
 }  // namespace B1

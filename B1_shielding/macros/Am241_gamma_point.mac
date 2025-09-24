@@ -1,0 +1,26 @@
+# 241Am γ射线屏蔽测试宏文件 - 点源版本（批量生成用）
+# 使用自定义玻璃配方
+
+# 设置玻璃配方文件（在初始化前设置）
+/det/glass/compositionFile /home/jesse/ngamma/B1_shielding/macros/recipes/test_oxide.txt
+
+# 初始化
+/run/initialize
+
+# 设置241Am γ射线点源
+/gps/particle gamma
+/gps/pos/type Point
+/gps/pos/centre 0. 0. -10. cm  # 点源位置，距离玻璃更近
+/gps/ene/mono 0.0595 MeV  # 241Am主要γ射线能量
+/gps/ang/type iso
+/gps/ang/mintheta 0. deg
+/gps/ang/maxtheta 30. deg  # 限制角度范围，模拟准直束
+
+# 设置输出
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# 运行241Am γ射线屏蔽测试
+/run/beamOn 1000000
+

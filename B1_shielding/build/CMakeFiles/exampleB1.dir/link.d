@@ -6,6 +6,7 @@ exampleB1: \
   CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o \
   CMakeFiles/exampleB1.dir/src/CustomPhysicsList.cc.o \
   CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o \
+  CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o \
   CMakeFiles/exampleB1.dir/src/EventAction.cc.o \
   CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o \
   CMakeFiles/exampleB1.dir/src/RunAction.cc.o \
@@ -167,6 +168,8 @@ CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o:
 CMakeFiles/exampleB1.dir/src/CustomPhysicsList.cc.o:
 
 CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o:
+
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o:
 
 CMakeFiles/exampleB1.dir/src/EventAction.cc.o:
 

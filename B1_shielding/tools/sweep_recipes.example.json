@@ -1,0 +1,18 @@
+{
+  "components": [
+    {"name": "sio2", "min": 40, "max": 50, "step": 5},
+    {"name": "al2o3",  "min": 10, "max": 20, "step": 5},
+    {"name": "b2O3",   "min": 10, "max": 25, "step": 5},
+    {"name": "Gd2O3",  "min": 5,  "max": 10, "step": 5},
+    {"name": "li2o",   "min": 0,  "max": 10, "step": 5},
+    {"name": "ceO2",   "min": 0,  "max": 10, "step": 5}
+  ],
+  "sum_tolerance": 0.5,
+  "events_per_run": 1000000,
+  "sources": [
+    {"name": "cf252", "macro": "macros/Cf252_neutron_test.mac"}
+  ],
+  "dry_run": true
+}
+
+

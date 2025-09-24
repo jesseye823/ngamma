@@ -128,10 +128,24 @@ CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jesse/ngamma/B1_shielding/src/DetectorConstruction.cc -o CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.s
 
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o: CMakeFiles/exampleB1.dir/flags.make
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o: /home/jesse/ngamma/B1_shielding/src/DetectorMessenger.cc
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o: CMakeFiles/exampleB1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o -MF CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o.d -o CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o -c /home/jesse/ngamma/B1_shielding/src/DetectorMessenger.cc
+
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jesse/ngamma/B1_shielding/src/DetectorMessenger.cc > CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.i
+
+CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jesse/ngamma/B1_shielding/src/DetectorMessenger.cc -o CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.s
+
 CMakeFiles/exampleB1.dir/src/EventAction.cc.o: CMakeFiles/exampleB1.dir/flags.make
 CMakeFiles/exampleB1.dir/src/EventAction.cc.o: /home/jesse/ngamma/B1_shielding/src/EventAction.cc
 CMakeFiles/exampleB1.dir/src/EventAction.cc.o: CMakeFiles/exampleB1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exampleB1.dir/src/EventAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exampleB1.dir/src/EventAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB1.dir/src/EventAction.cc.o -MF CMakeFiles/exampleB1.dir/src/EventAction.cc.o.d -o CMakeFiles/exampleB1.dir/src/EventAction.cc.o -c /home/jesse/ngamma/B1_shielding/src/EventAction.cc
 
 CMakeFiles/exampleB1.dir/src/EventAction.cc.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/exampleB1.dir/src/EventAction.cc.s: cmake_force
 CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/exampleB1.dir/flags.make
 CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o: /home/jesse/ngamma/B1_shielding/src/PrimaryGeneratorAction.cc
 CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/exampleB1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o -MF CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o.d -o CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o -c /home/jesse/ngamma/B1_shielding/src/PrimaryGeneratorAction.cc
 
 CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 CMakeFiles/exampleB1.dir/src/RunAction.cc.o: CMakeFiles/exampleB1.dir/flags.make
 CMakeFiles/exampleB1.dir/src/RunAction.cc.o: /home/jesse/ngamma/B1_shielding/src/RunAction.cc
 CMakeFiles/exampleB1.dir/src/RunAction.cc.o: CMakeFiles/exampleB1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exampleB1.dir/src/RunAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exampleB1.dir/src/RunAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB1.dir/src/RunAction.cc.o -MF CMakeFiles/exampleB1.dir/src/RunAction.cc.o.d -o CMakeFiles/exampleB1.dir/src/RunAction.cc.o -c /home/jesse/ngamma/B1_shielding/src/RunAction.cc
 
 CMakeFiles/exampleB1.dir/src/RunAction.cc.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/exampleB1.dir/src/RunAction.cc.s: cmake_force
 CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o: CMakeFiles/exampleB1.dir/flags.make
 CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o: /home/jesse/ngamma/B1_shielding/src/SteppingAction.cc
 CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o: CMakeFiles/exampleB1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o -MF CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o.d -o CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o -c /home/jesse/ngamma/B1_shielding/src/SteppingAction.cc
 
 CMakeFiles/exampleB1.dir/src/SteppingAction.cc.i: cmake_force
@@ -190,6 +204,7 @@ exampleB1_OBJECTS = \
 "CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o" \
 "CMakeFiles/exampleB1.dir/src/CustomPhysicsList.cc.o" \
 "CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o" \
+"CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o" \
 "CMakeFiles/exampleB1.dir/src/EventAction.cc.o" \
 "CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/exampleB1.dir/src/RunAction.cc.o" \
@@ -202,6 +217,7 @@ exampleB1: CMakeFiles/exampleB1.dir/exampleB1.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/CustomPhysicsList.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o
+exampleB1: CMakeFiles/exampleB1.dir/src/DetectorMessenger.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/EventAction.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o
 exampleB1: CMakeFiles/exampleB1.dir/src/RunAction.cc.o
@@ -247,7 +263,7 @@ exampleB1: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.8.3
 exampleB1: /usr/lib/x86_64-linux-gnu/libexpat.so
 exampleB1: /home/jesse/geant4/geant4-install/lib/libG4ptl.so.3.0.0
 exampleB1: CMakeFiles/exampleB1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable exampleB1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jesse/ngamma/B1_shielding/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable exampleB1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exampleB1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

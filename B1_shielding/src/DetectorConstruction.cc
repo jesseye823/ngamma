@@ -28,6 +28,7 @@
 /// \brief Implementation of the B1::DetectorConstruction class
 
 #include "DetectorConstruction.hh"
+#include "DetectorMessenger.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -45,9 +46,19 @@
 #include "G4UImanager.hh"
 #include "G4Region.hh"
 #include "G4ProductionCuts.hh"
+#include <map>
+#include <sstream>
 
 namespace B1
 {
+
+DetectorConstruction::DetectorConstruction() : fScoringVolume(nullptr), fMessenger(nullptr) {
+  fMessenger = new DetectorMessenger(this);
+}
+
+DetectorConstruction::~DetectorConstruction() {
+  delete fMessenger;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -58,8 +69,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Get nist material manager
   G4NistManager* nist = G4NistManager::Instance();
 
-  // 使用Geant4内置的玻璃材料，避免自定义材料的range转换问题
-  G4Material* shieldingGlass = nist->FindOrBuildMaterial("G4_GLASS_PLATE");
+  // 默认使用内置玻璃，若提供了配方文件，会在DefineShieldingGlass中返回自定义材料
+  G4Material* shieldingGlass = DefineShieldingGlass();
 
   // 世界体积参数（缩小以减少真空体积）
   G4double world_sizeXY = 50 * cm;
@@ -188,7 +199,7 @@ G4Material* DetectorConstruction::DefineShieldingGlass()
   G4double density;
   
   density = 2.200*g/cm3;
-  G4Material* SiO2 = new G4Material(name="quartz", density, 2);
+  G4Material* SiO2 = new G4Material(name="sio2", density, 2);
   SiO2->AddElement(elSi, 1);
   SiO2->AddElement(elO , 2);
   
@@ -243,25 +254,56 @@ G4Material* DetectorConstruction::DefineShieldingGlass()
   MgO->AddElement(elO , 1);
 
 
-  // 创建高性能屏蔽玻璃材料
-  density = 2.460*g/cm3;  // 优化密度用于屏蔽
-  G4Material* glassMaterial = new G4Material(name="ShieldingGlass", density, 8);
-  
-  // 材料配比
-  glassMaterial->AddMaterial(B2O3, 60*perCent);
-  //glassMaterial->AddMaterial(SiO2, 60*perCent);      // 基础玻璃基质
-  glassMaterial->AddMaterial(MgO, 4*perCent);    
-  glassMaterial->AddMaterial(Al2O3, 8*perCent);  
-  glassMaterial->AddMaterial(CeO2, 5*perCent);  
-  glassMaterial->AddMaterial(B2O3, 60*perCent);     
-  glassMaterial->AddMaterial(Gd2O3, 5*perCent);    
-  //glassMaterial->AddMaterial(ZnO, 6*perCent);       
-  glassMaterial->AddMaterial(Li2O, 18*perCent);      
-  //glassMaterial->AddMaterial(PbO, 2*perCent);      
-
-  G4cout << "Using Geant4 built-in G4_GLASS_PLATE material" << G4endl;
-
-  return glassMaterial;
+  // 若指定配方文件，则解析为材料组合；否则返回内置材料
+  if (!fGlassCompositionFile.empty()) {
+    std::ifstream fin(fGlassCompositionFile);
+    if (fin.good()) {
+      std::vector<std::pair<G4Material*, G4double>> parts;
+      std::string mname; double pct;
+      
+      // 创建材料映射表
+      std::map<std::string, G4Material*> materialMap;
+      materialMap["sio2"] = SiO2;     // 正式名称
+      materialMap["quartz"] = SiO2;   // 兼容旧配方（已废弃，请使用sio2）
+      materialMap["na2o"] = Na2O;
+      materialMap["k2o"] = K2O;
+      materialMap["zno"] = ZnO;
+      materialMap["Gd2O3"] = Gd2O3;
+      materialMap["al2o3"] = Al2O3;
+      materialMap["li2o"] = Li2O;
+      materialMap["ceO2"] = CeO2;
+      materialMap["b2O3"] = B2O3;
+      materialMap["pbO"] = PbO;
+      materialMap["mgO"] = MgO;
+      
+      std::string line;
+      while (std::getline(fin, line)) {
+        if (line.empty() || line[0] == '#') continue;
+        std::istringstream iss(line);
+        if (iss >> mname >> pct) {
+          auto it = materialMap.find(mname);
+          if (it != materialMap.end()) {
+            if (pct > 0) parts.push_back({it->second, pct});
+          } else {
+            G4cerr << "[GlassRecipe] Cannot find material: " << mname << G4endl;
+            continue;
+          }
+        }
+      }
+      if (!parts.empty()) {
+        G4double density = 2.460*g/cm3; // 可按需从文件读取或计算
+        G4Material* mix = new G4Material("ShieldingGlass", density, parts.size());
+        G4double sum = 0; for (auto& p : parts) sum += p.second;
+        for (auto& p : parts) {
+          mix->AddMaterial(p.first, (p.second/sum)*100*perCent);
+        }
+        G4cout << "[GlassRecipe] Custom ShieldingGlass built from " << fGlassCompositionFile << G4endl;
+        return mix;
+      }
+    }
+    G4cerr << "[GlassRecipe] Failed to parse recipe. Fallback to G4_GLASS_PLATE\n";
+  }
+  return nist->FindOrBuildMaterial("G4_GLASS_PLATE");
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

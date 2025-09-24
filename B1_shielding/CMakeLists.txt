@@ -46,10 +46,10 @@ target_link_libraries(exampleB1 PRIVATE ${Geant4_LIBRARIES} ${ROOT_LIBRARIES_LIS
 set(EXAMPLEB1_SCRIPTS
   exampleB1.in
   exampleB1.out
-  init_vis.mac
-  run1.mac
-  run2.mac
-  vis.mac
+  macros/init_vis.mac
+  macros/run1.mac
+  macros/run2.mac
+  macros/vis.mac
   )
 
 foreach(_script ${EXAMPLEB1_SCRIPTS})
