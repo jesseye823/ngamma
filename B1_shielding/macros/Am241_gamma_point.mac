@@ -4,22 +4,23 @@
 # 设置玻璃配方文件（在初始化前设置）
 /det/glass/compositionFile /home/jesse/ngamma/B1_shielding/macros/recipes/test_oxide.txt
 
-# 初始化
-/run/initialize
+# 使用GPS模式（确保目录命名与粒子一致）
+/source/mode gps
 
-# 设置241Am γ射线点源
+# 设置241Am γ射线点源（在初始化前配置完毕）
 /gps/particle gamma
 /gps/pos/type Point
 /gps/pos/centre 0. 0. -10. cm  # 点源位置，距离玻璃更近
 /gps/ene/mono 0.0595 MeV  # 241Am主要γ射线能量
-/gps/ang/type iso
-/gps/ang/mintheta 0. deg
-/gps/ang/maxtheta 30. deg  # 限制角度范围，模拟准直束
+/gps/direction 0 0 1  # 朝向+Z，确保穿过玻璃
+
+# 初始化（在材料与源配置之后）
+/run/initialize
 
 # 设置输出
 /run/verbose 0
 /event/verbose 0
-/tracking/verbose 0
+/tracking/verbose 1
 
 # 运行241Am γ射线屏蔽测试
 /run/beamOn 1000000

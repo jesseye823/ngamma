@@ -44,6 +44,7 @@
 #include "G4GenericMessenger.hh"
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 
 namespace B1
 {
@@ -54,8 +55,13 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
   G4cout << "PrimaryGeneratorAction constructor called" << G4endl;
 
-  // 默认模式：CF252（可由UI切换为GPS）
-  fMode = SourceMode::CF252;
+  // 默认模式：从环境变量NGAMMA_SOURCE_MODE读取（gps|cf252），默认gps
+  fMode = SourceMode::GPS;
+  if (const char* env = std::getenv("NGAMMA_SOURCE_MODE")) {
+    G4String m(env);
+    if (m == "cf252" || m == "CF252") fMode = SourceMode::CF252;
+    else fMode = SourceMode::GPS;
+  }
 
   // 生成器
   fParticleGun = new G4ParticleGun(1);
@@ -86,6 +92,18 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
   delete fParticleGun;
+}
+
+// Helper for run labeling: return current particle tag
+G4String PrimaryGeneratorAction::GetParticleTag() const
+{
+  if (fMode == SourceMode::CF252) return "neutron";
+  // GPS mode: try to read particle from GPS definition
+  if (fGPS) {
+    const G4ParticleDefinition* def = fGPS->GetParticleDefinition();
+    if (def) return def->GetParticleName();
+  }
+  return "gps";
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

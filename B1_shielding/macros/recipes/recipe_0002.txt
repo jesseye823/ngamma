@@ -1,6 +1,0 @@
-sio2 40
-al2o3 10
-b2O3 15
-Gd2O3 5
-li2o 20
-ceO2 10

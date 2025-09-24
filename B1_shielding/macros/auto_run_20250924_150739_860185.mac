@@ -1,3 +1,0 @@
-/det/glass/compositionFile /home/jesse/ngamma/B1_shielding/macros/recipes/recipe_0004.txt
-/control/execute /home/jesse/ngamma/B1_shielding/macros/Am241_gamma_point.mac
-/run/beamOn 1000000

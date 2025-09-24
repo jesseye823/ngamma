@@ -1,4 +1,5 @@
-# Run 1 macro
+# Run 1 macro (GPS)
+/source/mode gps
 /run/initialize
 /gps/particle gamma
 /gps/energy 0.0595 MeV

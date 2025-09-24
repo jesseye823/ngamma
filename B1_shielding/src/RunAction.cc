@@ -46,6 +46,7 @@
 #include <ctime>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
 
 namespace B1
 {
@@ -106,9 +107,8 @@ void RunAction::BeginOfRunAction(const G4Run* run)
     G4String particle = "unknown";
     G4String energyTag = "unknownE";
     if (auto pga = dynamic_cast<const PrimaryGeneratorAction*>(G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction())) {
-      // 我们的主发射器固定是中子 + Watt谱
-      particle = "neutron";
-      energyTag = "Cf252_Watt";
+      particle = pga->GetParticleTag();
+      energyTag = pga->GetSourceTag();
     }
     auto now = std::time(nullptr);
     std::tm tm{};
@@ -122,8 +122,12 @@ void RunAction::BeginOfRunAction(const G4Run* run)
     // 目录名顺序：粒子类型_能量_事件数_时间
     std::string folder = std::string(particle) + std::string("_") + energyTag +
                          std::string("_") + std::to_string(run->GetNumberOfEventToBeProcessed()) + std::string("ev_") + std::string(ts);
-    // 相对build目录，写入到上级的data子目录
-    std::filesystem::path outDir = std::filesystem::path("..") / "data" / folder;
+    // 使用绝对基路径（可通过环境变量NGAMMA_DATA_DIR覆盖），每次扫描单独子目录
+    const char* envBase = std::getenv("NGAMMA_DATA_DIR");
+    std::filesystem::path baseDir = (envBase && envBase[0] != '\0')
+                                      ? std::filesystem::path(envBase)
+                                      : std::filesystem::path("/home/jesse/ngamma/data");
+    std::filesystem::path outDir = baseDir / folder;
     std::error_code ec;
     std::filesystem::create_directories(outDir, ec);
     if (ec) {
@@ -154,16 +158,48 @@ void RunAction::BeginOfRunAction(const G4Run* run)
                 << std::fixed << std::setprecision(6) << fracs[i]*100.0 << " %\n";
           }
           
-          // 如果有配方文件，也记录原始配方
+          // 如果有配方文件，解析氧化物比例并写入
           if (!detConstruction->GetGlassCompositionFile().empty()) {
             ofs << "\nOriginal Recipe File: " << detConstruction->GetGlassCompositionFile() << "\n";
             std::ifstream recipeFile(detConstruction->GetGlassCompositionFile());
             if (recipeFile.good()) {
-              ofs << "Recipe Contents (Oxide Composition):\n";
+              std::vector<std::pair<std::string, double>> recipeParts;
               std::string line;
               while (std::getline(recipeFile, line)) {
-                if (!line.empty() && line[0] != '#') {
-                  ofs << "  " << line << "\n";
+                if (line.empty() || line[0] == '#') continue;
+                // 支持 name value、name:value、name=value，大小写不敏感，允许百分号
+                for (auto &ch : line) { if (ch=='\t') ch=' '; }
+                std::string name;
+                double pct = 0.0;
+                {
+                  // 统一分隔符为空格
+                  for (char &c : line) { if (c==':' || c=='=') c=' '; }
+                  std::istringstream iss(line);
+                  std::string valStr;
+                  if (iss >> name >> valStr) {
+                    // 去掉尾部%的符号
+                    if (!valStr.empty() && valStr.back()=='%') valStr.pop_back();
+                    try {
+                      pct = std::stod(valStr);
+                    } catch (...) { pct = 0.0; }
+                  } else {
+                    continue;
+                  }
+                }
+                // 统一小写名称
+                for (auto &c : name) c = std::tolower(c);
+                if (pct > 0) recipeParts.push_back({name, pct});
+              }
+              if (!recipeParts.empty()) {
+                double sum = 0.0; for (auto &p : recipeParts) sum += p.second;
+                ofs << "Oxide Composition (normalized %, from recipe):\n";
+                for (auto &p : recipeParts) {
+                  double norm = sum > 0 ? (p.second / sum) * 100.0 : 0.0;
+                  ofs << "  - " << p.first << ": " << std::fixed << std::setprecision(4) << norm << "%\n";
+                }
+                ofs << "Raw Recipe Lines:\n";
+                for (auto &p : recipeParts) {
+                  ofs << "  " << p.first << " " << p.second << "\n";
                 }
               }
             }

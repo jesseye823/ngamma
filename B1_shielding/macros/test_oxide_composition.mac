@@ -1,5 +1,6 @@
-# 测试宏文件 - 使用自定义氧化物配方
+# 测试宏文件 - 使用自定义氧化物配方（GPS模式）
 /det/glass/compositionFile /home/jesse/ngamma/B1_shielding/macros/recipes/test_oxide.txt
+/source/mode gps
 /run/initialize
 /gps/particle neutron
 /gps/energy 2.0 MeV

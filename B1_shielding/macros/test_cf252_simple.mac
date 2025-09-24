@@ -1,5 +1,7 @@
-# Cf-252 neutron source simple test
+# Cf-252 neutron source simple test (built-in Watt spectrum mode)
+/source/mode cf252
 /run/initialize
+# GPS settings below are ignored in cf252 mode; kept for reference
 /gps/particle neutron
 /gps/energy 2.5 MeV
 /gps/pos/type Surface

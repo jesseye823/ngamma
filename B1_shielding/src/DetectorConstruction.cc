@@ -261,26 +261,28 @@ G4Material* DetectorConstruction::DefineShieldingGlass()
       std::vector<std::pair<G4Material*, G4double>> parts;
       std::string mname; double pct;
       
-      // 创建材料映射表
+      // 创建材料映射表（统一小写键名）
       std::map<std::string, G4Material*> materialMap;
       materialMap["sio2"] = SiO2;     // 正式名称
       materialMap["quartz"] = SiO2;   // 兼容旧配方（已废弃，请使用sio2）
       materialMap["na2o"] = Na2O;
       materialMap["k2o"] = K2O;
       materialMap["zno"] = ZnO;
-      materialMap["Gd2O3"] = Gd2O3;
+      materialMap["gd2o3"] = Gd2O3;
       materialMap["al2o3"] = Al2O3;
       materialMap["li2o"] = Li2O;
-      materialMap["ceO2"] = CeO2;
-      materialMap["b2O3"] = B2O3;
-      materialMap["pbO"] = PbO;
-      materialMap["mgO"] = MgO;
+      materialMap["ceo2"] = CeO2;
+      materialMap["b2o3"] = B2O3;
+      materialMap["pbo"] = PbO;
+      materialMap["mgo"] = MgO;
       
       std::string line;
       while (std::getline(fin, line)) {
         if (line.empty() || line[0] == '#') continue;
         std::istringstream iss(line);
         if (iss >> mname >> pct) {
+          // 名称统一转换为小写
+          for (auto &c : mname) c = std::tolower(c);
           auto it = materialMap.find(mname);
           if (it != materialMap.end()) {
             if (pct > 0) parts.push_back({it->second, pct});

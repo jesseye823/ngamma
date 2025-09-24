@@ -58,6 +58,10 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     // UI setter
     void SetMode(const G4String& mode);
 
+    // For run labeling
+    G4String GetSourceTag() const { return (fMode == SourceMode::CF252) ? "Cf252_Watt" : "GPS"; }
+    G4String GetParticleTag() const;  // implemented in .cc
+
   private:
     // Internal helpers
     void initializeCf252Spectrum();
